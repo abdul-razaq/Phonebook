@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>This is the About component</p>
+    <p>This is the Error404 component</p>
   </div>
 </template>
 

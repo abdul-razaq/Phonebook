@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>This is the About component</p>
+    <p>This is the list of all contacts component that holds each inidividual contact item</p>
   </div>
 </template>
 

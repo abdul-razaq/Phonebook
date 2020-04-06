@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>This is the About component</p>
+    <p>This is the Login component</p>
   </div>
 </template>
 
