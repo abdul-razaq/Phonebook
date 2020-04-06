@@ -11,13 +11,18 @@ const routes = [
 	{
 		path: '/register',
 		name: 'Register',
-		component: () => import('../views/Register'),
+		component: () => import('../views/auth/Register'),
 	},
-	{ path: '/login', name: 'Login', component: () => import('../views/Login') },
+	{ path: '/login', name: 'Login', component: () => import('../views/auth/Login') },
 	{
 		path: '/contacts',
 		name: 'Contacts',
 		component: () => import('../views/Contacts'),
+	},
+	{
+		path: '/contacts/new',
+		name: 'NewContacts',
+		component: () => import('../views/NewContacts'),
 	},
 	{ path: '*', component: () => import('../views/Error404') },
 ];

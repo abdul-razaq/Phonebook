@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <app-header></app-header>
-    <div class="container">
-      <router-view></router-view>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -18,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-  body {
-    background-color: #ccc;
-  }
+body {
+  background-color: #ccc;
+}
 </style>
