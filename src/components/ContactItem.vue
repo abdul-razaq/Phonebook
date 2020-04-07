@@ -20,6 +20,9 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+.card {
+  box-shadow: 2px 2px 3px #8f8e8e;
+}
 .card-text {
   font-weight: 900;
 }

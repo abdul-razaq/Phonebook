@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light">
-    <router-link tag="a" class="navbar-brand text-light" to="/" exact>Contact Keeper</router-link>
+    <router-link tag="a" class="navbar-brand text-light" to="/" exact>Phonebook</router-link>
     <button
       class="navbar-toggler"
       type="button"

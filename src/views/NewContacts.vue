@@ -1,6 +1,81 @@
 <template>
-  <div>
-    <p>This is the component where we add new contact</p>
+  <div class="container">
+    <div class="row">
+      <div class="container col-md-6 mt-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <label for="firstname">Firstname</label>
+                <input type="text" class="form-control" id="firstname" />
+              </div>
+              <div class="form-group">
+                <label for="middlename">Middlename</label>
+                <input type="middlename" class="form-control" id="middlename" />
+              </div>
+              <div class="form-group">
+                <label for="lastname">Lastname</label>
+                <input type="lastname" class="form-control" id="lastname" />
+              </div>
+              <div class="form-group">
+                <label for="nickname">Nickname</label>
+                <input type="nickname" class="form-control" id="nickname" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" />
+              </div>
+              <div class="form-group">
+                <label for="facebook">Facebook</label>
+                <input type="text" class="form-control" id="facebook" />
+              </div>
+              <div class="form-group">
+                <label for="twitter">Twitter</label>
+                <input type="text" class="form-control" id="twitter" />
+              </div>
+              <div class="form-group">
+                <label for="instagram">Instagram</label>
+                <input type="text" class="form-control" id="instagram" />
+              </div>
+              <div class="form-group">
+                <label for="linkedin">Linkedin</label>
+                <input type="text" class="form-control" id="linkedin" />
+              </div>
+              <div class="form-group">
+                <label for="reddit">Reddit</label>
+                <input type="text" class="form-control" id="reddit" />
+              </div>
+              <div class="form-group">
+                <label for="home-phone">Phone number (Home)</label>
+                <input type="number" class="form-control" id="home-phone" />
+              </div>
+              <div class="form-group">
+                <label for="work-phone">Phone number (Work)</label>
+                <input type="number" class="form-control" id="work-phone" />
+              </div>
+              <div class="form-group">
+                <label for="address-home">Home Address</label>
+                <input type="text" class="form-control" id="address-home" />
+              </div>
+              <div class="form-group">
+                <label for="address-office">Office Address</label>
+                <input type="text" class="form-control" id="address-office" />
+              </div>
+              <div class="form-group">
+                <label for="relationship">Relationship</label>
+                <select name="relationship" class="custom-select">
+                  <option selected>Select a relationship with the contact</option>
+                  <option value="friend">Friend</option>
+                  <option value="family">Family</option>
+                  <option value="co-worker">Co-worker</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Contact</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,5 +83,21 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss" scoped>
+button {
+  background-color: indigo;
+  border-color: indigo;
+  font-weight: 900;
+  &:hover {
+    background-color: #5f099c;
+    border-color: #5f099c;
+  }
+  &:active {
+    background-color: #5f099c !important;
+    border-color: #5f099c !important;
+  }
+}
+.card {
+  box-shadow: 2px 2px 4px #8f8e8e;
+}
 </style>
