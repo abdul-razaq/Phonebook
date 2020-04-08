@@ -16,11 +16,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <router-link tag="a" class="nav-link text-light" to="/register" exact active-class="active">Register</router-link>
-          <span class="sr-only">(current)</span>
+          <router-link
+            tag="a"
+            class="nav-link text-light"
+            to="/register"
+            exact
+            active-class="active"
+          >Register</router-link>
         </li>
         <li class="nav-item">
-          <router-link tag="a" class="nav-link text-light" to="/login" exact active-class="active">Login</router-link>
+          <router-link
+            tag="a"
+            class="nav-link text-light"
+            to="/login"
+            exact
+            active-class="active"
+          >Login</router-link>
         </li>
         <li class="nav-item">
           <button class="logout-btn nav-link text-light">Logout</button>
@@ -43,7 +54,13 @@
           </div>
         </li>
         <li class="nav-item">
-          <router-link tag="a" class="nav-link text-light" to="/about" exact active-class="active">About</router-link>
+          <router-link
+            tag="a"
+            class="nav-link text-light"
+            to="/about"
+            exact
+            active-class="active"
+          >About</router-link>
         </li>
       </ul>
     </div>
@@ -51,19 +68,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isOpen: false
+    };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .navbar {
-    background-color: indigo;
-  }
-  .active {
-    color:burlywood !important;
-  }
-  .logout-btn {
-    border: none;
-    background-color: transparent;
-    outline: none;
-  }
+.navbar {
+  background-color: indigo;
+}
+.active {
+  color: burlywood !important;
+}
+.logout-btn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
 </style>

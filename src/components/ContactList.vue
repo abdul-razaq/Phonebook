@@ -1,14 +1,23 @@
 <template>
   <div class="container">
-    <h5 class="mt-2">Total Contacts: 4</h5>
-    <app-contact-item v-for="(item, index) in 4" :key="index"></app-contact-item>
+    <h5 class="mt-2">Total Contacts: {{ getTotalContacts }}</h5>
+    <app-contact-item
+      v-for="contact in getAllContacts"
+      :key="contact._id"
+      :fullname="contact.firstname + ' ' + contact.lastname"
+      :contactId="contact._id"
+    ></app-contact-item>
   </div>
 </template>
 
 <script>
 import ContactItem from "../components/ContactItem";
+import { mapGetters } from "vuex";
 
 export default {
+  computed: {
+    ...mapGetters(["getAllContacts", "getTotalContacts"])
+  },
   data() {
     return {};
   },

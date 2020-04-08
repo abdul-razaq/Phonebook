@@ -13,16 +13,27 @@ const routes = [
 		name: 'Register',
 		component: () => import('../views/auth/Register'),
 	},
-	{ path: '/login', name: 'Login', component: () => import('../views/auth/Login') },
 	{
-		path: '/contacts',
-		name: 'Contacts',
-		component: () => import('../views/Contacts'),
+		path: '/login',
+		name: 'Login',
+		component: () => import('../views/auth/Login'),
 	},
 	{
 		path: '/contacts/new',
 		name: 'NewContacts',
 		component: () => import('../views/NewContacts'),
+	},
+	{
+		path: '/contacts/:id',
+		props: true,
+		name: 'ContactDetails',
+		component: () => import('../views/ContactDetails'),
+	},
+	{
+		path: '/contacts/edit/:id',
+		props: true,
+		name: 'EditContact',
+		component: () => import('../views/EditContact'),
 	},
 	{ path: '*', component: () => import('../views/Error404') },
 ];
