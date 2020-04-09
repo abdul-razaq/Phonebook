@@ -7,11 +7,11 @@
             <form>
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control mb-3" id="username" />
+                <input type="text" class="form-control mb-3" id="username" v-model="username" />
               </div>
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" />
+                <input type="email" class="form-control" id="email" v-model="email" />
                 <small
                   id="email"
                   class="form-text text-muted"
@@ -19,13 +19,18 @@
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" />
+                <input type="password" class="form-control" id="password" v-model="password" />
               </div>
               <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm-password" />
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmPassword"
+                  v-model="confirmPassword"
+                />
               </div>
-              <button type="submit" class="btn btn-primary">Register</button>
+              <button type="submit" class="btn btn-primary" @click.prevent="registerNewUser">Register</button>
             </form>
           </div>
         </div>
@@ -35,7 +40,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: ""
+    };
+  },
+  methods: {
+    registerNewUser() {
+      const formData = {
+        username: this.username,
+        email: this.email,
+        password: this.password,
+        confirm_password: this.confirmPassword
+      };
+      console.log(formData);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>

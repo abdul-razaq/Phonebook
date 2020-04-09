@@ -3,7 +3,7 @@
     <h3
       class="mt-4 text-center mb-4"
     >{{ getContact.firstname + ' ' + getContact.lastname }}'s Contact Details</h3>
-    <p class="text-muted text-center">Date Added: {{getContact.dateAdded}}</p>
+    <p class="text-muted text-center">Date Added: {{ getContact.dateAdded | convertToUTCTime }}</p>
     <div class="list-group mb-2">
       <div class="list-group-item" v-if="getContact.firstname">
         <div class="d-flex w-100 justify-content-between">
@@ -96,6 +96,11 @@ export default {
   computed: {
     getContact() {
       return this.$store.getters.getContact(this.id);
+    }
+  },
+  filters: {
+    convertToUTCTime(value) {
+      return new Date(value).toUTCString();
     }
   }
 };

@@ -43,10 +43,7 @@ export default {
   font-weight: 900;
   background-color: red;
 }
-.btn-secondary {
-  color: fff;
-  font-weight: 900;
-}
+.btn-secondary,
 .btn-info {
   color: fff;
   font-weight: 900;
