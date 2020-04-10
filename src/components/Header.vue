@@ -15,7 +15,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item" v-if="!isAuth">
           <router-link
             tag="a"
             class="nav-link text-light"
@@ -24,7 +24,7 @@
             active-class="active"
           >Register</router-link>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="!isAuth">
           <router-link
             tag="a"
             class="nav-link text-light"
@@ -33,10 +33,10 @@
             active-class="active"
           >Login</router-link>
         </li>
-        <li class="nav-item">
-          <button class="logout-btn nav-link text-light">Logout</button>
+        <li class="nav-item" v-if="isAuth">
+          <button class="logout-btn nav-link text-light" @click.prevent="logoutUser">Logout</button>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" v-if="isAuth">
           <a
             class="nav-link dropdown-toggle text-light"
             href="#"
@@ -53,7 +53,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="isAuth">
           <router-link
             tag="a"
             class="nav-link text-light"
@@ -68,11 +68,26 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
+
 export default {
+  computed: {
+    ...mapGetters({
+      isAuth: "isAuthenticated"
+    })
+  },
   data() {
     return {
       isOpen: false
     };
+  },
+  methods: {
+    ...mapActions({
+      logoutUser: "logout"
+    })
+    // logoutUser() {
+    //   this.$store.dispatch("logout");
+    // }
   }
 };
 </script>

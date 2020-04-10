@@ -7,6 +7,7 @@ import contact from './modules/contact';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+	strict: true,
 	modules: {
 		auth,
 		contact,

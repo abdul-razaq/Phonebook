@@ -23,13 +23,13 @@ import ContactList from "../components/ContactList";
 
 export default {
   components: {
-    appContactList: ContactList,
+    appContactList: ContactList
   }
 };
 </script>
 
 <style lang="scss" scoped>
-  .btn-success {
-    font-weight: 900;
-  }
+.btn-success {
+  font-weight: 900;
+}
 </style>
