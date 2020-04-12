@@ -7,7 +7,22 @@
             <form @submit.prevent="loginUser">
               <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control mb-3" id="email" v-model="email" />
+                <input
+                  :class="{invalid: $v.email.$error}"
+                  type="email"
+                  class="form-control mb-3"
+                  id="email"
+                  v-model="email"
+                  @blur="$v.email.$touch()"
+                />
+                <p
+                  v-if="!$v.email.email"
+                  :class="{'error': !$v.email.email}"
+                >Please provide a valid email address</p>
+                <p
+                  v-if="!$v.email.required"
+                  :class="{ 'error': !$v.email.required }"
+                >Email field cannot be empty</p>
                 <small
                   id="email"
                   class="form-text text-muted"
@@ -15,15 +30,17 @@
               </div>
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" v-model="password" />
+                <input type="password" class="form-control" id="password" v-model="password" @blur="$v.password.$touch()" :class="{invalid: $v.password.$error}" />
               </div>
+              <p v-if="!$v.password.required" :class="{ error: !$v.password.required}">Password field cannot be empty</p>
+              <p v-if="!$v.password.minLength" :class="{ error: !$v.password.minLength}">Password must be {{ $v.password.$params.minLength.min }} characters or more</p>
               <div class="card-footer mb-2">
                 <p class="card-text text-center">
                   Don't have an account yet? Click
                   <router-link class="link" tag="a" to="/register" exact>here</router-link> to Register!
                 </p>
               </div>
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary" :disabled="$v.email.error || $v.password.$error">Login</button>
             </form>
           </div>
         </div>
@@ -33,6 +50,8 @@
 </template>
 
 <script>
+import { required, minLength, email } from "vuelidate/lib/validators";
+
 export default {
   data() {
     return {
@@ -47,6 +66,19 @@ export default {
         password: this.password
       };
       this.$store.dispatch("login", loginData);
+    }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      minLength: minLength(8),
+      notContainPassword(value) {
+        return !value.includes("password");
+      }
     }
   }
 };
@@ -78,5 +110,12 @@ button {
 .link {
   text-decoration: none;
   color: #5f099c;
+}
+.error {
+  color: red;
+}
+.invalid {
+  border: 1px solid red;
+  transition: all .4s ease-out;
 }
 </style>

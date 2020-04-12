@@ -23,7 +23,15 @@ const routes = [
 	{
 		path: '/about',
 		name: 'About',
-		component: () => import('../views/About')
+		component: () => import('../views/About'),
+		beforeEnter(to, from, next) {
+			const { token, authUser } = store.state.auth;
+			if (!token && !authUser) {
+				next('/login');
+			} else {
+				next();
+			}
+		}
 	},
 	{
 		path: '/register',
@@ -38,23 +46,55 @@ const routes = [
 	{
 		path: '/contacts/new',
 		name: 'NewContacts',
-		component: () => import('../views/NewContacts')
+		component: () => import('../views/NewContacts'),
+		beforeEnter(to, from, next) {
+			const { token, authUser } = store.state.auth;
+			if (!token && !authUser) {
+				next('/login');
+			} else {
+				next();
+			}
+		}
 	},
 	{
 		path: '/contacts/:id',
 		props: true,
 		name: 'ContactDetails',
-		component: () => import('../views/ContactDetails')
+		component: () => import('../views/ContactDetails'),
+		beforeEnter(to, from, next) {
+			const { token, authUser } = store.state.auth;
+			if (!token && !authUser) {
+				next('/login');
+			} else {
+				next();
+			}
+		}
 	},
 	{
 		path: '/contacts/edit/:id',
 		props: true,
 		name: 'EditContact',
-		component: () => import('../views/EditContact')
+		component: () => import('../views/EditContact'),
+		beforeEnter(to, from, next) {
+			const { token, authUser } = store.state.auth;
+			if (!token && !authUser) {
+				next('/login');
+			} else {
+				next();
+			}
+		}
 	},
 	{
 		path: '*',
-		component: () => import('../views/Error404')
+		component: () => import('../views/Error404'),
+		beforeEnter(to, from, next) {
+			const { token, authUser } = store.state.auth;
+			if (!token && !authUser) {
+				next('/login');
+			} else {
+				next();
+			}
+		}
 	}
 ];
 

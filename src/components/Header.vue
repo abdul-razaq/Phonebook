@@ -85,9 +85,6 @@ export default {
     ...mapActions({
       logoutUser: "logout"
     })
-    // logoutUser() {
-    //   this.$store.dispatch("logout");
-    // }
   }
 };
 </script>

@@ -85,14 +85,6 @@ button {
   font-weight: 900;
   display: block;
   margin: 0 auto;
-  &:hover {
-    background-color: #5f099c;
-    border-color: #5f099c;
-  }
-  &:active {
-    background-color: #5f099c !important;
-    border-color: #5f099c !important;
-  }
 }
 .card {
   box-shadow: 2px 2px 4px #8f8e8e;
