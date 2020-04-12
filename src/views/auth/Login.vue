@@ -34,6 +34,7 @@
               </div>
               <p v-if="!$v.password.required" :class="{ error: !$v.password.required}">Password field cannot be empty</p>
               <p v-if="!$v.password.minLength" :class="{ error: !$v.password.minLength}">Password must be {{ $v.password.$params.minLength.min }} characters or more</p>
+              <p v-if="$v.password.containPassword" :class="{ error: $v.password.containPassword }">Password cannot contain the word 'password'</p>
               <div class="card-footer mb-2">
                 <p class="card-text text-center">
                   Don't have an account yet? Click
@@ -76,8 +77,8 @@ export default {
     password: {
       required,
       minLength: minLength(8),
-      notContainPassword(value) {
-        return !value.includes("password");
+      containPassword(value) {
+        return value.includes("password");
       }
     }
   }
