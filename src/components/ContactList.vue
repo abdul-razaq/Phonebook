@@ -23,6 +23,9 @@ export default {
   },
   components: {
     appContactItem: ContactItem
+  },
+  created() {
+    this.$store.dispatch('getAllContacts');
   }
 };
 </script>
