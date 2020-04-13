@@ -32,9 +32,10 @@ const actions = {
 			commit('SET_STATUS_AND_MESSAGE', { status, message });
 			router.replace('/');
 		} catch (error) {
+			const { status, message } = error.response.data;
 			commit('SET_STATUS_AND_MESSAGE', {
-				status: 'Error',
-				message: 'Error registering user'
+				status,
+				message
 			});
 		}
 	},
@@ -46,9 +47,10 @@ const actions = {
 			commit('SET_STATUS_AND_MESSAGE', { status, message });
 			router.replace('/');
 		} catch (error) {
+			const { status, message } = error.response.data;
 			commit('SET_STATUS_AND_MESSAGE', {
-				status: 'Error',
-				message: "Couldn't login"
+				status,
+				message
 			});
 		}
 	},
@@ -64,9 +66,10 @@ const actions = {
 				router.replace('/login');
 			})
 			.catch(error => {
+				const { status, message } = error.response.data;
 				commit('SET_STATUS_AND_MESSAGE', {
-					status: 'Error',
-					message: error.message
+					status,
+					message
 				});
 			});
 	}
