@@ -107,7 +107,9 @@ export default {
   watch: {
     showAlert: function() {
       setTimeout(() => {
-        this.showAlert = false;
+        if (this.showAlert) {
+          this.showAlert = false;
+        }
       }, 5000);
     }
   },
@@ -135,6 +137,9 @@ export default {
         return value.includes("password");
       }
     }
+  },
+  beforeDestroy() {
+    return this.showAlert = false;
   }
 };
 </script>

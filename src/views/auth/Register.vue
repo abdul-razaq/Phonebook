@@ -140,6 +140,15 @@ export default {
   computed: {
     ...mapGetters(["getStatusAndMessage"])
   },
+  watch: {
+    showClose: function() {
+      setTimeout(() => {
+        if (this.showClose) {
+          this.showClose = false;
+        }
+      }, 5000);
+    }
+  },
   methods: {
     registerNewUser() {
       const formData = {
@@ -172,6 +181,9 @@ export default {
     confirmPassword: {
       sameAsPassword: sameAs("password")
     }
+  },
+  beforeDestroy() {
+    return this.showAlert = false;
   }
 };
 </script>
