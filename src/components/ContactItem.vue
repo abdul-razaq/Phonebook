@@ -18,7 +18,7 @@
             :to="{name: 'EditContact', params: { id: contactId }}"
             class="btn btn-secondary mr-3"
           >Edit</router-link>
-          <router-link tag="button" exact to="/" class="btn btn-danger mr-3">Delete</router-link>
+          <button type="button" class="btn btn-danger mr-3" @click="deleteContact(contactId)">Delete</button>
         </div>
       </div>
     </div>
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-  props: ["fullname", "contactId"]
+  props: ["fullname", "contactId"],
+  methods: {
+    deleteContact(contactId) {
+      this.$store.dispatch("deleteContact", contactId);
+    }
+  }
 };
 </script>
 

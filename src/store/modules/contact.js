@@ -48,7 +48,7 @@ const actions = {
 		}
 	},
 
-	async addNewContact({ commit, dispatch, state }, contactData) {
+	async addNewContact({ commit, dispatch }, contactData) {
 		try {
 			contactsInstance.defaults.headers.common['Authorization'] =
 				'Bearer ' + store.getters.getAuthToken;
@@ -62,6 +62,19 @@ const actions = {
 			commit('SET_STATUS_AND_MESSAGE', { status, message });
 		}
 	},
+	async deleteContact({ commit, dispatch, state }, contactId) {
+		try {
+			contactsInstance.defaults.headers.common['Authorization'] =
+				'Bearer ' + store.getters.getAuthToken;
+			const response = await contactsInstance.delete(`/contacts/${contactId}`);
+			const { status, message } = response.data;
+			commit('SET_STATUS_AND_MESSAGE', { status, message });
+			await dispatch('getAllContacts');
+		} catch (error) {
+			const { status, message } = error.response.data;
+			commit('SET_STATUS_AND_MESSAGE', { status, message });
+		}
+	}
 };
 
 const getters = {

@@ -86,6 +86,7 @@
     </div>
     <button
       class="btn btn-danger mb-4"
+      @click="deleteContact(id)"
     >Delete {{ getContact.firstname + ' ' + getContact.lastname }}</button>
   </div>
 </template>
@@ -96,6 +97,12 @@ export default {
   computed: {
     getContact() {
       return this.$store.getters.getContact(this.id);
+    }
+  },
+  methods: {
+    deleteContact(contactId) {
+      this.$store.dispatch("deleteContact", contactId);
+      this.$router.replace('/');
     }
   },
   filters: {

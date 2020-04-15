@@ -12,10 +12,8 @@ const routes = [
 		name: 'Home',
 		component: Home,
 		beforeEnter(to, from, next) {
-			const isLoggedin = JSON.parse(localStorage.getItem('userData')).token;
-			console.log(isLoggedin);
 			const { token, authUser } = store.state.auth;
-			if (!isLoggedin) {
+			if (!token && !authUser) {
 				next('/login');
 			} else {
 				next();
