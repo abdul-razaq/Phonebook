@@ -12,8 +12,10 @@ const routes = [
 		name: 'Home',
 		component: Home,
 		beforeEnter(to, from, next) {
+			const isLoggedin = JSON.parse(localStorage.getItem('userData')).token;
+			console.log(isLoggedin);
 			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
+			if (!isLoggedin) {
 				next('/login');
 			} else {
 				next();
@@ -46,7 +48,7 @@ const routes = [
 	{
 		path: '/contacts/new',
 		name: 'NewContacts',
-		component: () => import('../views/NewContacts'),
+		component: () => import('../views/NewContact'),
 		beforeEnter(to, from, next) {
 			const { token, authUser } = store.state.auth;
 			if (!token && !authUser) {

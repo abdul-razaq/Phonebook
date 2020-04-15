@@ -18,6 +18,8 @@ export default {
 <style lang="scss">
 body {
   background-color: #d8d8d8;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
 }
 .form-control:focus,
 .custom-select:focus {

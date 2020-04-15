@@ -12,6 +12,10 @@ const mutations = {
 	SET_TOKEN(state, payload) {
 		state.token = payload.token;
 		state.authUser = payload.authUser;
+		localStorage.setItem('userData', JSON.stringify(payload));
+		authInstance.defaults.headers.common[
+			'Authorization'
+		] = `Bearer ${payload.token}`;
 	},
 	SET_STATUS_AND_MESSAGE(state, payload) {
 		state.status = payload.status;
@@ -20,6 +24,8 @@ const mutations = {
 	CLEAR_TOKEN(state) {
 		state.token = null;
 		state.authUser = null;
+		localStorage.removeItem('userData');
+		authInstance.defaults.headers.common['Authorization'] = null;
 	}
 };
 
@@ -55,8 +61,6 @@ const actions = {
 		}
 	},
 	logout({ commit, getters }) {
-		authInstance.defaults.headers.common['Authorization'] =
-			'Bearer ' + getters.getAuthToken;
 		authInstance
 			.post('/logout')
 			.then(response => {
@@ -85,7 +89,7 @@ const getters = {
 	getStatusAndMessage(state) {
 		return { status: state.status, message: state.message };
 	},
-	isAuthenticated(state) {
+	isLoggedIn(state) {
 		return (
 			state.token !== null &&
 			state.authUser !== null &&
