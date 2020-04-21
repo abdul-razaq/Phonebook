@@ -5,7 +5,7 @@ const state = {
 	status: '',
 	message: '',
 	token: null,
-	authUser: null
+	authUser: null,
 };
 
 const mutations = {
@@ -21,12 +21,10 @@ const mutations = {
 		state.status = payload.status;
 		state.message = payload.message;
 	},
-	CLEAR_TOKEN(state) {
-		state.token = null;
-		state.authUser = null;
+	CLEAR_TOKEN() {
 		localStorage.removeItem('userData');
-		authInstance.defaults.headers.common['Authorization'] = null;
-	}
+		location.reload();
+	},
 };
 
 const actions = {
@@ -41,7 +39,7 @@ const actions = {
 			const { status, message } = error.response.data;
 			commit('SET_STATUS_AND_MESSAGE', {
 				status,
-				message
+				message,
 			});
 		}
 	},
@@ -56,27 +54,27 @@ const actions = {
 			const { status, message } = error.response.data;
 			commit('SET_STATUS_AND_MESSAGE', {
 				status,
-				message
+				message,
 			});
 		}
 	},
 	logout({ commit, getters }) {
 		authInstance
 			.post('/logout')
-			.then(response => {
+			.then((response) => {
 				const { status, message } = response.data;
 				commit('SET_STATUS_AND_MESSAGE', { status, message });
 				commit('CLEAR_TOKEN');
 				router.replace('/login');
 			})
-			.catch(error => {
+			.catch((error) => {
 				const { status, message } = error.response.data;
 				commit('SET_STATUS_AND_MESSAGE', {
 					status,
-					message
+					message,
 				});
 			});
-	}
+	},
 };
 
 const getters = {
@@ -90,17 +88,13 @@ const getters = {
 		return { status: state.status, message: state.message };
 	},
 	isLoggedIn(state) {
-		return (
-			state.token !== null &&
-			state.authUser !== null &&
-			state.status === 'Success'
-		);
-	}
+		return state.token !== null && state.authUser !== null;
+	},
 };
 
 export default {
 	state,
 	mutations,
 	actions,
-	getters
+	getters,
 };

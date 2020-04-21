@@ -62,7 +62,7 @@ const actions = {
 			commit('SET_STATUS_AND_MESSAGE', { status, message });
 		}
 	},
-	async deleteContact({ commit, dispatch, state }, contactId) {
+	async deleteContact({ commit, dispatch }, contactId) {
 		try {
 			contactsInstance.defaults.headers.common['Authorization'] =
 				'Bearer ' + store.getters.getAuthToken;

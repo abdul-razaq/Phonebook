@@ -4,6 +4,7 @@
       <div class="container col-md-6 mt-4">
         <div class="card mb-4">
           <div class="card-body">
+            <h2 class="mb-4 text-center">Edit contact details of {{`${getContact.firstname} ${getContact.lastname}`}}</h2>
             <form>
               <div class="form-group">
                 <label for="firstname">Firstname</label>
@@ -171,5 +172,8 @@ button {
 }
 .card {
   box-shadow: 2px 2px 4px #8f8e8e;
+}
+h2 {
+  color: indigo;
 }
 </style>

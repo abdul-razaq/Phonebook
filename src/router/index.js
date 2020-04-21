@@ -11,95 +11,63 @@ const routes = [
 		path: '/',
 		name: 'Home',
 		component: Home,
-		beforeEnter(to, from, next) {
-			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
-				next('/login');
-			} else {
-				next();
-			}
-		}
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '/about',
 		name: 'About',
 		component: () => import('../views/About'),
-		beforeEnter(to, from, next) {
-			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
-				next('/login');
-			} else {
-				next();
-			}
-		}
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '/register',
 		name: 'Register',
-		component: () => import('../views/auth/Register')
+		component: () => import('../views/auth/Register'),
 	},
 	{
 		path: '/login',
 		name: 'Login',
-		component: () => import('../views/auth/Login')
+		component: () => import('../views/auth/Login'),
 	},
 	{
 		path: '/contacts/new',
 		name: 'NewContacts',
 		component: () => import('../views/NewContact'),
-		beforeEnter(to, from, next) {
-			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
-				next('/login');
-			} else {
-				next();
-			}
-		}
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '/contacts/:id',
 		props: true,
 		name: 'ContactDetails',
 		component: () => import('../views/ContactDetails'),
-		beforeEnter(to, from, next) {
-			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
-				next('/login');
-			} else {
-				next();
-			}
-		}
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '/contacts/edit/:id',
 		props: true,
 		name: 'EditContact',
 		component: () => import('../views/EditContact'),
-		beforeEnter(to, from, next) {
-			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
-				next('/login');
-			} else {
-				next();
-			}
-		}
+		meta: { requiresAuth: true },
 	},
 	{
 		path: '*',
 		component: () => import('../views/Error404'),
-		beforeEnter(to, from, next) {
-			const { token, authUser } = store.state.auth;
-			if (!token && !authUser) {
-				next('/login');
-			} else {
-				next();
-			}
-		}
-	}
+		meta: { requiresAuth: true },
+	},
 ];
 
-export default new Router({
+const router = new Router({
 	base: '/',
 	routes,
-	mode: 'history'
+	mode: 'history',
 });
+
+router.beforeEach((to, from, next) => {
+	const authUser = localStorage.getItem('userData');
+	if (to.matched.some((routes) => routes.meta.requiresAuth) && !authUser) {
+		next({ name: 'Login' });
+	}
+	next();
+});
+
+export default router;

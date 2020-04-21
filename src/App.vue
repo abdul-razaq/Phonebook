@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <app-header></app-header>
-    <router-view></router-view>
+    <transition name="router-slide" mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
 <style lang="scss">
 body {
   background-color: #d8d8d8;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 18px;
 }
 .form-control:focus,
@@ -38,5 +40,21 @@ body {
 }
 .btn:disabled {
   cursor: not-allowed;
+}
+.router-slide-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.router-slide-enter-active {
+  transition: all .3s ease-out;
+}
+
+.router-slide-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
+}
+.router-slide-leave-active {
+  transition: all .3s ease-out;
 }
 </style>
